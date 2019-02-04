@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Merges multiple datasets in COCO format."""
+
 import numpy as np
 
 import argparse
