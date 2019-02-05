@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Converts datasets between different formats."""
+
 import argparse
 import os
 import shutil
