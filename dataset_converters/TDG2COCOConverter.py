@@ -47,16 +47,26 @@ class TDG2COCOConverter(ConverterBase):
             for instance in [list(group) for k, group in groupby(line[2:], lambda x: x == 'segm') if not k]:
                 assert(label >= 0)
                 # If the number of elements is odd there is a label for next instance
-                instance = [int(s) for s in instance]
-                if (len(instance) % 2 == 1):
-                    next_label = instance[-1]
+                if (len([i for i in instance if i.isdigit()]) % 2 == 1):
+                    next_label = int(instance[-1])
                     instance = instance[:-1]
-                min_x = min(instance[::2])
-                max_x = max(instance[::2])
-                min_y = min(instance[1::2])
-                max_y = max(instance[1::2])
+                components = []
+                while(len(instance) > 0):
+                    if '|' in instance:
+                        index = instance.index('|')
+                    else:
+                        index = len(instance)
+
+                    component = [int(s) for s in instance[:index]]
+                    instance = instance[index+1:]
+                    min_x = min(component[::2])
+                    max_x = max(component[::2])
+                    min_y = min(component[1::2])
+                    max_y = max(component[1::2])
+                    components.append(component)
+
                 bbox = [min_x, min_y, max_x - min_x, max_y - min_y]
-                instances[filename].append({'id': label, 'bbox': bbox, 'segmentation': [instance]})
+                instances[filename].append({'id': label, 'bbox': bbox, 'segmentation': components})
                 label = next_label
 
         return instances
