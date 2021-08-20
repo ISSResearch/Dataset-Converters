@@ -12,7 +12,8 @@ formats = [
     'VOCCALIB',
     'VOCSEGM',
     'OID',
-    'CVAT'
+    'CVAT',
+    'YOLO'
 ]
 
 

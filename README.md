@@ -122,6 +122,7 @@ Can be directly converted to
 <li> TDG
 <li> TDGSEGM
 <li> VOCCALIB
+<li> YOLO
 </ul>
 
 <i>Note.</i><br>
@@ -208,6 +209,36 @@ Can be directly converted to
 <ul>
 <li> COCO
 </ul>
+
+<li>
+<a href="https://pjreddie.com/darknet/yolo/"><b>YOLO</b></a>
+<br><br>
+
+Can be directly converted to 
+
+<ul>
+<li> COCO
+</ul>
+
+<i>Note.</i><br>
+We expect an `obj.data` file in the input folder. The following lines in any order must be presented:
+
+```
+train  = <relative path to the file with list of train images>
+valid  = <relative path to the file with list of valid images>
+names = <relative path to the file with list of classes>
+```
+
+The list of images consists of lines with relative paths to each image:
+
+```
+path/to/image1.jpg
+path/to/image2.jpg
+...
+path/to/imageN.jpg
+```
+
+Near every imageM.jpg must be presented an imageM.txt file with annotations in yolo format.
 
 </ul>
 
